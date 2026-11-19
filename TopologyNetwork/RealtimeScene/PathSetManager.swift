@@ -108,7 +108,7 @@ extension PathSetManager {
     func parseURL(destinations: [DestinationRelation], completion: ((UIBezierPath?, PathError?) -> Void)? = nil) {
         for tmp in destinations {
             if let path = tmp.path {
-                
+                // 已有路径无需解析，待所有 SVG 解析完成后统一按顺序拼接
             } else if let url = tmp.svgURL, cachedPathsByURL[url] == nil {
                 print("[\(String(describing: Self.self))-\(#function)-\(Thread.current):\(#line)] 将\(url.lastPathComponent)解析")
                 do {
@@ -198,8 +198,6 @@ extension PathSetManager {
         
         var destinations: [DestinationRelation] = []
         
-//        var toPointArr: [(toName: String, path: URL)] = []
-        
         init(pointName: String) {
             self.pointName = pointName
         }
@@ -234,9 +232,9 @@ extension PathSetManager {
         
         let destinations: [DestinationRelation]
         
-        var svgURL: URL
+        let svgURL: URL
         
-        var completion: ((UIBezierPath?, PathError?) -> Void)?
+        let completion: ((UIBezierPath?, PathError?) -> Void)?
         
         var parseResult: ParseResult?
         
