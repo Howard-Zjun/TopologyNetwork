@@ -352,17 +352,17 @@ extension RealtimeSceneViewController {
         let vehicleEnter = "vehicleEnter"
         let vehicleOuter = "vehicleOuter"
         let keepOnLoadOuter = "keepOnLoadOuter"
-        pathSetManager.setSinglePathFrom(fromName: solarViewModel.name, toName: solarEnter, toSVG: "solar——circle".toSVGURL())
-        pathSetManager.setSinglePathFrom(fromName: gridViewModel.name, toName: gridEnter, toSVG: "grid——circle".toSVGURL())
-        pathSetManager.setSinglePathFrom(fromName: gridViewModel.name, toName: additionalLoadViewModel.name, toSVG: "grid——Additional Load".toSVGURL())
-        pathSetManager.setSinglePathFrom(fromName: gridEnter, toName: solarEnter, path: createCirclePath(startAngle: 1.75 * CGFloat.pi, endAngle: 1.25 * CGFloat.pi))
-        pathSetManager.setSinglePathFrom(fromName: solarEnter, toName: vehicleEnter, path: createCirclePath(startAngle: 1.25 * CGFloat.pi, endAngle: 0.88 * CGFloat.pi))
-        pathSetManager.setSinglePathFrom(fromName: vehicleEnter, toName: vehicleOuter, path: createCirclePath(startAngle: 0.88 * CGFloat.pi, endAngle: 0.68 * CGFloat.pi))
-        pathSetManager.setSinglePathFrom(fromName: vehicleOuter, toName: keepOnLoadOuter, path: createCirclePath(startAngle: 0.70 * CGFloat.pi, endAngle: 0.25 * CGFloat.pi))
-        pathSetManager.setSinglePathFrom(fromName: solarEnter, toName: batteryViewModel.name, toSVG: "circle——battery".toSVGURL())
-        pathSetManager.setSinglePathFrom(fromName: vehicleEnter, toName: vehicleViewModel.name, toSVG: "circle——vehicle".toSVGURL())
-        pathSetManager.setSinglePathFrom(fromName: vehicleOuter, toName: keepOnLoadViewModel.name, toSVG: "circle——KeepON Load".toSVGURL())
-        pathSetManager.setSinglePathFrom(fromName: keepOnLoadOuter, toName: additionalLoadViewModel.name, toSVG: "circle——Additional Load".toSVGURL())
+        pathSetManager.configPath(fromName: solarViewModel.name, toName: solarEnter, toSVG: "solar——circle".toSVGURL())
+        pathSetManager.configPath(fromName: gridViewModel.name, toName: gridEnter, toSVG: "grid——circle".toSVGURL())
+        pathSetManager.configPath(fromName: gridViewModel.name, toName: additionalLoadViewModel.name, toSVG: "grid——Additional Load".toSVGURL())
+        pathSetManager.configPath(fromName: gridEnter, toName: solarEnter, path: createCirclePath(startAngle: 1.75 * CGFloat.pi, endAngle: 1.25 * CGFloat.pi))
+        pathSetManager.configPath(fromName: solarEnter, toName: vehicleEnter, path: createCirclePath(startAngle: 1.25 * CGFloat.pi, endAngle: 0.88 * CGFloat.pi))
+        pathSetManager.configPath(fromName: vehicleEnter, toName: vehicleOuter, path: createCirclePath(startAngle: 0.88 * CGFloat.pi, endAngle: 0.68 * CGFloat.pi))
+        pathSetManager.configPath(fromName: vehicleOuter, toName: keepOnLoadOuter, path: createCirclePath(startAngle: 0.70 * CGFloat.pi, endAngle: 0.25 * CGFloat.pi))
+        pathSetManager.configPath(fromName: solarEnter, toName: batteryViewModel.name, toSVG: "circle——battery".toSVGURL())
+        pathSetManager.configPath(fromName: vehicleEnter, toName: vehicleViewModel.name, toSVG: "circle——vehicle".toSVGURL())
+        pathSetManager.configPath(fromName: vehicleOuter, toName: keepOnLoadViewModel.name, toSVG: "circle——KeepON Load".toSVGURL())
+        pathSetManager.configPath(fromName: keepOnLoadOuter, toName: additionalLoadViewModel.name, toSVG: "circle——Additional Load".toSVGURL())
     }
     
     /// 生成部分圆路径
