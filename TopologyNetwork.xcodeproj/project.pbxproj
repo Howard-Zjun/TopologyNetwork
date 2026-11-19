@@ -3,48 +3,87 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 110;
+	objectVersion = 77;
 	objects = {
+
+/* Begin PBXBuildFile section */
+		39CBA70930AEFB3E007F72BD /* PathSetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CBA6EA30AEFB3E007F72BD /* PathSetManager.swift */; };
+		39CBA70A30AEFB3E007F72BD /* RealtimeSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CBA6EB30AEFB3E007F72BD /* RealtimeSceneViewController.swift */; };
+		39CBA70B30AEFB3E007F72BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CBA6FE30AEFB3E007F72BD /* AppDelegate.swift */; };
+		39CBA70C30AEFB3E007F72BD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CBA70530AEFB3E007F72BD /* SceneDelegate.swift */; };
+		39CBA70D30AEFB3E007F72BD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CBA70630AEFB3E007F72BD /* ViewController.swift */; };
+		39CBA71230AEFB3E007F72BD /* circle——Additional Load.svg in Resources */ = {isa = PBXBuildFile; fileRef = 39CBA6F130AEFB3E007F72BD /* circle——Additional Load.svg */; };
+		39CBA71330AEFB3E007F72BD /* circle——battery.svg in Resources */ = {isa = PBXBuildFile; fileRef = 39CBA6F230AEFB3E007F72BD /* circle——battery.svg */; };
+		39CBA71530AEFB3E007F72BD /* circle——KeepON Load.svg in Resources */ = {isa = PBXBuildFile; fileRef = 39CBA6F430AEFB3E007F72BD /* circle——KeepON Load.svg */; };
+		39CBA71730AEFB3E007F72BD /* circle——vehicle.svg in Resources */ = {isa = PBXBuildFile; fileRef = 39CBA6F630AEFB3E007F72BD /* circle——vehicle.svg */; };
+		39CBA71830AEFB3E007F72BD /* grid——Additional Load.svg in Resources */ = {isa = PBXBuildFile; fileRef = 39CBA6F730AEFB3E007F72BD /* grid——Additional Load.svg */; };
+		39CBA71930AEFB3E007F72BD /* grid——circle.svg in Resources */ = {isa = PBXBuildFile; fileRef = 39CBA6F830AEFB3E007F72BD /* grid——circle.svg */; };
+		39CBA71B30AEFB3E007F72BD /* solar——circle.svg in Resources */ = {isa = PBXBuildFile; fileRef = 39CBA6FA30AEFB3E007F72BD /* solar——circle.svg */; };
+		39CBA71D30AEFB3E007F72BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39CBA6FF30AEFB3E007F72BD /* Assets.xcassets */; };
+		39CBA71F30AEFB3E007F72BD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39CBA70230AEFB3E007F72BD /* LaunchScreen.storyboard */; };
+		39CBA72030AEFB3E007F72BD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39CBA70430AEFB3E007F72BD /* Main.storyboard */; };
+		9BFE093623C6D23AD3370F2C /* Pods_TopologyNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABFB1772DBAEF106C0273E0B /* Pods_TopologyNetwork.framework */; };
+/* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		39CBA63830AEFA82007F72BD /* TopologyNetwork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TopologyNetwork.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		39CBA6EA30AEFB3E007F72BD /* PathSetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathSetManager.swift; sourceTree = "<group>"; };
+		39CBA6EB30AEFB3E007F72BD /* RealtimeSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealtimeSceneViewController.swift; sourceTree = "<group>"; };
+		39CBA6F130AEFB3E007F72BD /* circle——Additional Load.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = "circle——Additional Load.svg"; sourceTree = "<group>"; };
+		39CBA6F230AEFB3E007F72BD /* circle——battery.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = "circle——battery.svg"; sourceTree = "<group>"; };
+		39CBA6F430AEFB3E007F72BD /* circle——KeepON Load.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = "circle——KeepON Load.svg"; sourceTree = "<group>"; };
+		39CBA6F630AEFB3E007F72BD /* circle——vehicle.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = "circle——vehicle.svg"; sourceTree = "<group>"; };
+		39CBA6F730AEFB3E007F72BD /* grid——Additional Load.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = "grid——Additional Load.svg"; sourceTree = "<group>"; };
+		39CBA6F830AEFB3E007F72BD /* grid——circle.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = "grid——circle.svg"; sourceTree = "<group>"; };
+		39CBA6FA30AEFB3E007F72BD /* solar——circle.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = "solar——circle.svg"; sourceTree = "<group>"; };
+		39CBA6FE30AEFB3E007F72BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		39CBA6FF30AEFB3E007F72BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		39CBA70030AEFB3E007F72BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		39CBA70130AEFB3E007F72BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		39CBA70330AEFB3E007F72BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		39CBA70530AEFB3E007F72BD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		39CBA70630AEFB3E007F72BD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3C7DA0D2DC34157C6134DCDE /* Pods-TopologyNetwork.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TopologyNetwork.debug.xcconfig"; path = "Target Support Files/Pods-TopologyNetwork/Pods-TopologyNetwork.debug.xcconfig"; sourceTree = "<group>"; };
+		77936E8351AF234FB7A4B809 /* Pods-TopologyNetwork.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TopologyNetwork.release.xcconfig"; path = "Target Support Files/Pods-TopologyNetwork/Pods-TopologyNetwork.release.xcconfig"; sourceTree = "<group>"; };
+		ABFB1772DBAEF106C0273E0B /* Pods_TopologyNetwork.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TopologyNetwork.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		39CBA64A30AEFA84007F72BD /* Exceptions for "TopologyNetwork" folder in "TopologyNetwork" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = 39CBA63730AEFA82007F72BD /* TopologyNetwork */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		39CBA63A30AEFA82007F72BD /* TopologyNetwork */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				39CBA64A30AEFA84007F72BD /* Exceptions for "TopologyNetwork" folder in "TopologyNetwork" target */,
-			);
-			path = TopologyNetwork;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		39CBA63530AEFA82007F72BD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
+				9BFE093623C6D23AD3370F2C /* Pods_TopologyNetwork.framework in Frameworks */,
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		060770CEFD162B9874B25982 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3C7DA0D2DC34157C6134DCDE /* Pods-TopologyNetwork.debug.xcconfig */,
+				77936E8351AF234FB7A4B809 /* Pods-TopologyNetwork.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		0E42E2B6EF4306E425F38A8F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ABFB1772DBAEF106C0273E0B /* Pods_TopologyNetwork.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		39CBA62F30AEFA82007F72BD = {
 			isa = PBXGroup;
 			children = (
-				39CBA63A30AEFA82007F72BD /* TopologyNetwork */,
+				39CBA70730AEFB3E007F72BD /* TopologyNetwork */,
 				39CBA63930AEFA82007F72BD /* Products */,
+				060770CEFD162B9874B25982 /* Pods */,
+				0E42E2B6EF4306E425F38A8F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,6 +95,53 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		39CBA6EC30AEFB3E007F72BD /* RealtimeScene */ = {
+			isa = PBXGroup;
+			children = (
+				39CBA6EA30AEFB3E007F72BD /* PathSetManager.swift */,
+				39CBA6EB30AEFB3E007F72BD /* RealtimeSceneViewController.swift */,
+			);
+			path = RealtimeScene;
+			sourceTree = "<group>";
+		};
+		39CBA6FC30AEFB3E007F72BD /* Path */ = {
+			isa = PBXGroup;
+			children = (
+				39CBA6F130AEFB3E007F72BD /* circle——Additional Load.svg */,
+				39CBA6F230AEFB3E007F72BD /* circle——battery.svg */,
+				39CBA6F430AEFB3E007F72BD /* circle——KeepON Load.svg */,
+				39CBA6F630AEFB3E007F72BD /* circle——vehicle.svg */,
+				39CBA6F730AEFB3E007F72BD /* grid——Additional Load.svg */,
+				39CBA6F830AEFB3E007F72BD /* grid——circle.svg */,
+				39CBA6FA30AEFB3E007F72BD /* solar——circle.svg */,
+			);
+			path = Path;
+			sourceTree = "<group>";
+		};
+		39CBA6FD30AEFB3E007F72BD /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				39CBA6FC30AEFB3E007F72BD /* Path */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		39CBA70730AEFB3E007F72BD /* TopologyNetwork */ = {
+			isa = PBXGroup;
+			children = (
+				39CBA6EC30AEFB3E007F72BD /* RealtimeScene */,
+				39CBA6FD30AEFB3E007F72BD /* Resource */,
+				39CBA6FE30AEFB3E007F72BD /* AppDelegate.swift */,
+				39CBA6FF30AEFB3E007F72BD /* Assets.xcassets */,
+				39CBA70030AEFB3E007F72BD /* Info.plist */,
+				39CBA70230AEFB3E007F72BD /* LaunchScreen.storyboard */,
+				39CBA70430AEFB3E007F72BD /* Main.storyboard */,
+				39CBA70530AEFB3E007F72BD /* SceneDelegate.swift */,
+				39CBA70630AEFB3E007F72BD /* ViewController.swift */,
+			);
+			path = TopologyNetwork;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -63,14 +149,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 39CBA64B30AEFA84007F72BD /* Build configuration list for PBXNativeTarget "TopologyNetwork" */;
 			buildPhases = (
+				DEB6E7E47A0EE8223402CF21 /* [CP] Check Pods Manifest.lock */,
 				39CBA63430AEFA82007F72BD /* Sources */,
 				39CBA63530AEFA82007F72BD /* Frameworks */,
 				39CBA63630AEFA82007F72BD /* Resources */,
+				8D0CD67EFBC6330AF89DB7EE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
-			fileSystemSynchronizedGroups = (
-				39CBA63A30AEFA82007F72BD /* TopologyNetwork */,
+			dependencies = (
 			);
 			name = TopologyNetwork;
 			productName = TopologyNetwork;
@@ -114,22 +201,107 @@
 /* Begin PBXResourcesBuildPhase section */
 		39CBA63630AEFA82007F72BD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
+				39CBA71230AEFB3E007F72BD /* circle——Additional Load.svg in Resources */,
+				39CBA71330AEFB3E007F72BD /* circle——battery.svg in Resources */,
+				39CBA71530AEFB3E007F72BD /* circle——KeepON Load.svg in Resources */,
+				39CBA71730AEFB3E007F72BD /* circle——vehicle.svg in Resources */,
+				39CBA71830AEFB3E007F72BD /* grid——Additional Load.svg in Resources */,
+				39CBA71930AEFB3E007F72BD /* grid——circle.svg in Resources */,
+				39CBA71B30AEFB3E007F72BD /* solar——circle.svg in Resources */,
+				39CBA71D30AEFB3E007F72BD /* Assets.xcassets in Resources */,
+				39CBA71F30AEFB3E007F72BD /* LaunchScreen.storyboard in Resources */,
+				39CBA72030AEFB3E007F72BD /* Main.storyboard in Resources */,
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8D0CD67EFBC6330AF89DB7EE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TopologyNetwork/Pods-TopologyNetwork-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TopologyNetwork/Pods-TopologyNetwork-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TopologyNetwork/Pods-TopologyNetwork-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DEB6E7E47A0EE8223402CF21 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TopologyNetwork-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		39CBA63430AEFA82007F72BD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
+				39CBA70930AEFB3E007F72BD /* PathSetManager.swift in Sources */,
+				39CBA70A30AEFB3E007F72BD /* RealtimeSceneViewController.swift in Sources */,
+				39CBA70B30AEFB3E007F72BD /* AppDelegate.swift in Sources */,
+				39CBA70C30AEFB3E007F72BD /* SceneDelegate.swift in Sources */,
+				39CBA70D30AEFB3E007F72BD /* ViewController.swift in Sources */,
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXVariantGroup section */
+		39CBA70230AEFB3E007F72BD /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				39CBA70130AEFB3E007F72BD /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		39CBA70430AEFB3E007F72BD /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				39CBA70330AEFB3E007F72BD /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
-		39CBA64C30AEFA84007F72BD /* Debug configuration for PBXNativeTarget "TopologyNetwork" */ = {
+		39CBA64C30AEFA84007F72BD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3C7DA0D2DC34157C6134DCDE /* Pods-TopologyNetwork.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -160,8 +332,9 @@
 			};
 			name = Debug;
 		};
-		39CBA64D30AEFA84007F72BD /* Release configuration for PBXNativeTarget "TopologyNetwork" */ = {
+		39CBA64D30AEFA84007F72BD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 77936E8351AF234FB7A4B809 /* Pods-TopologyNetwork.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -192,7 +365,7 @@
 			};
 			name = Release;
 		};
-		39CBA64E30AEFA84007F72BD /* Debug configuration for PBXProject "TopologyNetwork" */ = {
+		39CBA64E30AEFA84007F72BD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -256,7 +429,7 @@
 			};
 			name = Debug;
 		};
-		39CBA64F30AEFA84007F72BD /* Release configuration for PBXProject "TopologyNetwork" */ = {
+		39CBA64F30AEFA84007F72BD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -319,21 +492,22 @@
 		39CBA63330AEFA82007F72BD /* Build configuration list for PBXProject "TopologyNetwork" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				39CBA64E30AEFA84007F72BD /* Debug configuration for PBXProject "TopologyNetwork" */,
-				39CBA64F30AEFA84007F72BD /* Release configuration for PBXProject "TopologyNetwork" */,
+				39CBA64E30AEFA84007F72BD /* Debug */,
+				39CBA64F30AEFA84007F72BD /* Release */,
 			);
+			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		39CBA64B30AEFA84007F72BD /* Build configuration list for PBXNativeTarget "TopologyNetwork" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				39CBA64C30AEFA84007F72BD /* Debug configuration for PBXNativeTarget "TopologyNetwork" */,
-				39CBA64D30AEFA84007F72BD /* Release configuration for PBXNativeTarget "TopologyNetwork" */,
+				39CBA64C30AEFA84007F72BD /* Debug */,
+				39CBA64D30AEFA84007F72BD /* Release */,
 			);
+			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
 	rootObject = 39CBA63030AEFA82007F72BD /* Project object */;
-	validationLevel = 1;
 }
