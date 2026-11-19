@@ -9,64 +9,15 @@ import UIKit
 import MyBaseExtension
 import SnapKit
 import SwiftSVG
+import RxSwift
 
 class RealtimeSceneViewController: UIViewController {
 
-    @objc lazy var solarViewModel: PowerRquipmentViewModel = {
-        let ret = PowerRquipmentViewModel(name: "solar", power: 6)
-        ret.connect(label: solarValueLab)
-        return ret
-    }()
-    
-    @objc lazy var gridViewModel: PowerRquipmentViewModel = {
-        let ret = PowerRquipmentViewModel(name: "grid", power: 3)
-        ret.connect(label: gridValueLab)
-        return ret
-    }()
-    
-    @objc lazy var batteryViewModel: PowerRquipmentViewModel = {
-        let ret = PowerRquipmentViewModel(name: "battery", power: 0)
-        ret.connect(label: batteryValeuLab)
-        return ret
-    }()
-    
-    @objc lazy var vehicleViewModel: PowerRquipmentViewModel = {
-        let ret = PowerRquipmentViewModel(name: "vehicle", power: 0)
-        ret.connect(label: vehicleChargingValueLab)
-        return ret
-    }()
-    
-    @objc lazy var keepOnLoadViewModel: PowerRquipmentViewModel = {
-        let ret = PowerRquipmentViewModel(name: "keepOn Load", power: 0)
-        ret.connect(label: keepOnLoadValueLab)
-        return ret
-    }()
-    
-    @objc lazy var additionalLoadViewModel: PowerRquipmentViewModel = {
-        let ret = PowerRquipmentViewModel(name: "additionalLoad", power: 0)
-        ret.connect(label: additionalLoadValueLab)
-        return ret
-    }()
-    
-    var solarIncreaseTimer: Timer?
-    
-    var gridIncreaseTimer: Timer?
-    
-    var vehicleReduceTimer: Timer?
-    
-    var usageExtraReduceTimer: Timer?
-    
-    var transportTimer: Timer?
-    
-    let pathSetManager: PathSetManager = .init()
+    private let viewModel = RealtimeSceneViewModel()
+    private let disposeBag = DisposeBag()
+    private let pathSetManager = PathSetManager()
 
-    lazy var operaQueue: OperationQueue = {
-        let operaQueue = OperationQueue()
-        operaQueue.maxConcurrentOperationCount = 1
-        return operaQueue
-    }()
-    
-    lazy var titleLab: UILabel = {
+    private lazy var titleLab: UILabel = {
         let titleLab = UILabel()
         titleLab.text = "Realtime Power"
         titleLab.textColor = .init(hex: 0xFFFFFF)
@@ -74,140 +25,34 @@ class RealtimeSceneViewController: UIViewController {
         return titleLab
     }()
     
-    lazy var pathImgV: UIImageView = {
+    private lazy var pathImgV: UIImageView = {
         let pathImgV = UIImageView()
         pathImgV.image = .init(named: "topo_map")
         pathImgV.tintColor = .init(hex: 0xFFFFFF, a: 0.1)
         return pathImgV
     }()
     
-    lazy var lightningModeImgV: UIImageView = {
+    private lazy var lightningModeImgV: UIImageView = {
         let lightningModeImgV = UIImageView()
         lightningModeImgV.image = .init(named: "icon_power_lightning_mode")
         return lightningModeImgV
     }()
     
-    lazy var solarPowerImgV: UIImageView = {
-        let solarFullPowerImgV = UIImageView()
-        solarFullPowerImgV.image = .init(named: "icon_power_solar_full")
-        return solarFullPowerImgV
-    }()
-    
-    lazy var solarNameLab: UILabel = {
-        let solarNameLab = UILabel()
-        solarNameLab.font = .systemFont(ofSize: 13, weight: .regular)
-        solarNameLab.textColor = .init(hex: 0xFFFFFF, a: 0.3)
-        solarNameLab.text = "Solar"
-        return solarNameLab
-    }()
-    
-    lazy var solarValueLab: UILabel = {
-        let solarValueLab = UILabel()
-        return solarValueLab
-    }()
-    
-    lazy var gridPowerImgV: UIImageView = {
-        let gridPowerImgV = UIImageView()
-        gridPowerImgV.image = .init(named: "icon_power_grid")
-        return gridPowerImgV
-    }()
-    
-    lazy var gridNameLab: UILabel = {
-        let gridNameLab = UILabel()
-        gridNameLab.font = .systemFont(ofSize: 13, weight: .regular)
-        gridNameLab.textColor = .init(hex: 0xFFFFFF, a: 0.3)
-        gridNameLab.text = "Grid"
-        return gridNameLab
-    }()
-    
-    lazy var gridValueLab: UILabel = {
-        let gridValueLab = UILabel()
-        return gridValueLab
-    }()
-    
-    lazy var batteryImgV: UIImageView = {
-        let batteryImgV = UIImageView()
-        batteryImgV.image = .init(named: "icon_power_battery_background")
-        return batteryImgV
-    }()
-
-    lazy var batteryNameLab: UILabel = {
-        let batteryNameLab = UILabel()
-        batteryNameLab.font = .systemFont(ofSize: 13, weight: .regular)
-        batteryNameLab.textColor = .init(hex: 0xFFFFFF, a: 0.3)
-        batteryNameLab.text = "Battery"
-        return batteryNameLab
-    }()
-    
-    lazy var batteryValeuLab: UILabel = {
-        let batteryValueLab = UILabel()
-        return batteryValueLab
-    }()
-    
-    lazy var vehicleChargingImgV: UIImageView = {
-        let vehicleChargingImgV = UIImageView()
-        vehicleChargingImgV.image = .init(named: "icon_power_vehicle_charging")
-        return vehicleChargingImgV
-    }()
-    
-    lazy var vehicleChargingNameLab: UILabel = {
-        let vehicleChargingNameLab = UILabel()
-        vehicleChargingNameLab.font = .systemFont(ofSize: 13, weight: .regular)
-        vehicleChargingNameLab.textColor = .init(hex: 0xFFFFFF, a: 0.3)
-        vehicleChargingNameLab.text = "Vehicle"
-        return vehicleChargingNameLab
-    }()
-    
-    lazy var vehicleChargingValueLab: UILabel = {
-        let vehicleChargingValueLab = UILabel()
-        return vehicleChargingValueLab
-    }()
-    
-    lazy var keepOnLoadImgV: UIImageView = {
-        let keepOnLoadImgV = UIImageView()
-        keepOnLoadImgV.image = .init(named: "icon_power_usage_secure_supply")
-        return keepOnLoadImgV
-    }()
-    
-    lazy var keepOnLoadNameLab: UILabel = {
-        let keepOnLoadNameLab = UILabel()
-        keepOnLoadNameLab.font = .systemFont(ofSize: 13, weight: .regular)
-        keepOnLoadNameLab.textColor = .init(hex: 0xFFFFFF, a: 0.3)
-        keepOnLoadNameLab.text = "KeepOn Load"
-        return keepOnLoadNameLab
-    }()
-    
-    lazy var keepOnLoadValueLab: UILabel = {
-        let keepOnLoadValueLab = UILabel()
-        return keepOnLoadValueLab
-    }()
-    
-    lazy var additionalLoadImgV: UIImageView = {
-        let additionalLoadImgV = UIImageView()
-        additionalLoadImgV.image = .init(named: "icon_power_usage_extra_supply")
-        return additionalLoadImgV
-    }()
-    
-    lazy var additionalLoadNameLab: UILabel = {
-        let additionalLoadNameLab = UILabel()
-        additionalLoadNameLab.font = .systemFont(ofSize: 13, weight: .regular)
-        additionalLoadNameLab.textColor = .init(hex: 0xFFFFFF, a: 0.3)
-        additionalLoadNameLab.text = "Additional Load"
-        return additionalLoadNameLab
-    }()
-    
-    lazy var additionalLoadValueLab: UILabel = {
-        let additionalLoadValueLab = UILabel()
-        return additionalLoadValueLab
-    }()
+    let solarView = PowerEquipmentView(name: "Solar", imageName: "icon_power_solar_full", order: .valueNameImage)
+    let gridView = PowerEquipmentView(name: "Grid", imageName: "icon_power_grid", order: .valueNameImage)
+    let batteryView = PowerEquipmentView(name: "Battery", imageName: "icon_power_battery_background", order: .valueNameImage, imageSize: nil)
+    let vehicleView = PowerEquipmentView(name: "Vehicle", imageName: "icon_power_vehicle_charging", order: .imageNameValue, valueHeight: 58)
+    let keepOnLoadView = PowerEquipmentView(name: "KeepOn Load", imageName: "icon_power_usage_secure_supply", order: .imageNameValue, valueHeight: 58)
+    let additionalLoadView = PowerEquipmentView(name: "Additional Load", imageName: "icon_power_usage_extra_supply", order: .imageNameValue, valueHeight: 60)
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .init(hex: 0x2B445E)
         setupSubviews()
         makeConstraints()
-        startCounter()
         configPath()
+        bindViewModel()
+        viewModel.start()
         
     }
 
@@ -215,24 +60,9 @@ class RealtimeSceneViewController: UIViewController {
         view.addSubview(titleLab)
         view.addSubview(pathImgV)
         view.addSubview(lightningModeImgV)
-        view.addSubview(solarPowerImgV)
-        view.addSubview(solarNameLab)
-        view.addSubview(solarValueLab)
-        view.addSubview(gridPowerImgV)
-        view.addSubview(gridNameLab)
-        view.addSubview(gridValueLab)
-        view.addSubview(batteryImgV)
-        view.addSubview(batteryNameLab)
-        view.addSubview(batteryValeuLab)
-        view.addSubview(vehicleChargingImgV)
-        view.addSubview(vehicleChargingNameLab)
-        view.addSubview(vehicleChargingValueLab)
-        view.addSubview(keepOnLoadImgV)
-        view.addSubview(keepOnLoadNameLab)
-        view.addSubview(keepOnLoadValueLab)
-        view.addSubview(additionalLoadImgV)
-        view.addSubview(additionalLoadNameLab)
-        view.addSubview(additionalLoadValueLab)
+        [solarView, gridView, batteryView, vehicleView, keepOnLoadView, additionalLoadView].forEach {
+            view.addSubview($0)
+        }
     }
     
     func makeConstraints() {
@@ -251,94 +81,29 @@ class RealtimeSceneViewController: UIViewController {
             make.top.equalTo(pathImgV).offset(54)
             make.size.equalTo(24)
         }
-        solarPowerImgV.snp.makeConstraints { make in
+        solarView.imageView.snp.makeConstraints { make in
             make.bottom.equalTo(pathImgV.snp.top)
             make.left.equalTo(pathImgV.snp.left).offset(70)
-            make.size.equalTo(60)
         }
-        solarNameLab.snp.makeConstraints { make in
-            make.centerX.equalTo(solarPowerImgV)
-            make.bottom.equalTo(solarPowerImgV.snp.top)
-            make.height.equalTo(20)
-        }
-        solarValueLab.snp.makeConstraints { make in
-            make.centerX.equalTo(solarNameLab)
-            make.bottom.equalTo(solarNameLab.snp.top)
-            make.height.equalTo(48)
-        }
-        gridPowerImgV.snp.makeConstraints { make in
+        gridView.imageView.snp.makeConstraints { make in
             make.bottom.equalTo(pathImgV.snp.top)
             make.right.equalTo(pathImgV).offset(30)
-            make.size.equalTo(60)
         }
-        gridNameLab.snp.makeConstraints { make in
-            make.centerX.equalTo(gridPowerImgV)
-            make.bottom.equalTo(gridPowerImgV.snp.top)
-            make.height.equalTo(20)
-        }
-        gridValueLab.snp.makeConstraints { make in
-            make.centerX.equalTo(gridNameLab)
-            make.bottom.equalTo(gridNameLab.snp.top)
-            make.height.equalTo(48)
-        }
-        batteryImgV.snp.makeConstraints { make in
+        batteryView.imageView.snp.makeConstraints { make in
             make.top.equalTo(pathImgV).offset(45.44)
             make.right.equalTo(pathImgV.snp.left).offset(-3.99)
         }
-        batteryNameLab.snp.makeConstraints { make in
-            make.centerX.equalTo(batteryImgV)
-            make.bottom.equalTo(batteryImgV.snp.top)
-            make.height.equalTo(20)
-        }
-        batteryValeuLab.snp.makeConstraints { make in
-            make.centerX.equalTo(batteryNameLab)
-            make.bottom.equalTo(batteryNameLab.snp.top)
-            make.height.equalTo(48)
-        }
-        vehicleChargingImgV.snp.makeConstraints { make in
+        vehicleView.imageView.snp.makeConstraints { make in
             make.left.equalTo(pathImgV).offset(-55.99)
             make.bottom.equalTo(pathImgV).offset(46.56)
-            make.size.equalTo(60)
         }
-        vehicleChargingNameLab.snp.makeConstraints { make in
-            make.centerX.equalTo(vehicleChargingImgV)
-            make.top.equalTo(vehicleChargingImgV.snp.bottom)
-            make.height.equalTo(20)
-        }
-        vehicleChargingValueLab.snp.makeConstraints { make in
-            make.centerX.equalTo(vehicleChargingNameLab)
-            make.top.equalTo(vehicleChargingNameLab.snp.bottom)
-            make.height.equalTo(58)
-        }
-        keepOnLoadImgV.snp.makeConstraints { make in
-            make.centerX.equalTo(solarPowerImgV)
+        keepOnLoadView.imageView.snp.makeConstraints { make in
+            make.centerX.equalTo(solarView.imageView)
             make.bottom.equalTo(pathImgV).offset(46.56)
-            make.size.equalTo(60)
         }
-        keepOnLoadNameLab.snp.makeConstraints { make in
-            make.centerX.equalTo(keepOnLoadImgV)
-            make.top.equalTo(keepOnLoadImgV.snp.bottom)
-            make.height.equalTo(20)
-        }
-        keepOnLoadValueLab.snp.makeConstraints { make in
-            make.centerX.equalTo(keepOnLoadNameLab)
-            make.top.equalTo(keepOnLoadNameLab.snp.bottom)
-            make.height.equalTo(58)
-        }
-        additionalLoadImgV.snp.makeConstraints { make in
-            make.centerX.equalTo(gridPowerImgV)
+        additionalLoadView.imageView.snp.makeConstraints { make in
+            make.centerX.equalTo(gridView.imageView)
             make.bottom.equalTo(pathImgV).offset(46.56)
-            make.size.equalTo(60)
-        }
-        additionalLoadNameLab.snp.makeConstraints { make in
-            make.centerX.equalTo(additionalLoadImgV)
-            make.top.equalTo(additionalLoadImgV.snp.bottom)
-            make.height.equalTo(20)
-        }
-        additionalLoadValueLab.snp.makeConstraints { make in
-            make.centerX.equalTo(additionalLoadNameLab)
-            make.top.equalTo(additionalLoadNameLab.snp.bottom)
-            make.height.equalTo(60)
         }
     }
     
@@ -347,22 +112,23 @@ class RealtimeSceneViewController: UIViewController {
 extension RealtimeSceneViewController {
     
     func configPath() {
+        typealias Equipment = RealtimeSceneViewModel.Equipment
         let solarEnter = "solarEnter"
         let gridEnter = "gridEnter"
         let vehicleEnter = "vehicleEnter"
         let vehicleOuter = "vehicleOuter"
         let keepOnLoadOuter = "keepOnLoadOuter"
-        pathSetManager.configPath(fromName: solarViewModel.name, toName: solarEnter, toSVG: "solar——circle".toSVGURL())
-        pathSetManager.configPath(fromName: gridViewModel.name, toName: gridEnter, toSVG: "grid——circle".toSVGURL())
-        pathSetManager.configPath(fromName: gridViewModel.name, toName: additionalLoadViewModel.name, toSVG: "grid——Additional Load".toSVGURL())
+        pathSetManager.configPath(fromName: Equipment.solar.rawValue, toName: solarEnter, toSVG: "solar——circle".toSVGURL())
+        pathSetManager.configPath(fromName: Equipment.grid.rawValue, toName: gridEnter, toSVG: "grid——circle".toSVGURL())
+        pathSetManager.configPath(fromName: Equipment.grid.rawValue, toName: Equipment.additionalLoad.rawValue, toSVG: "grid——Additional Load".toSVGURL())
         pathSetManager.configPath(fromName: gridEnter, toName: solarEnter, path: createCirclePath(startAngle: 1.75 * CGFloat.pi, endAngle: 1.25 * CGFloat.pi))
         pathSetManager.configPath(fromName: solarEnter, toName: vehicleEnter, path: createCirclePath(startAngle: 1.25 * CGFloat.pi, endAngle: 0.88 * CGFloat.pi))
         pathSetManager.configPath(fromName: vehicleEnter, toName: vehicleOuter, path: createCirclePath(startAngle: 0.88 * CGFloat.pi, endAngle: 0.68 * CGFloat.pi))
         pathSetManager.configPath(fromName: vehicleOuter, toName: keepOnLoadOuter, path: createCirclePath(startAngle: 0.70 * CGFloat.pi, endAngle: 0.25 * CGFloat.pi))
-        pathSetManager.configPath(fromName: solarEnter, toName: batteryViewModel.name, toSVG: "circle——battery".toSVGURL())
-        pathSetManager.configPath(fromName: vehicleEnter, toName: vehicleViewModel.name, toSVG: "circle——vehicle".toSVGURL())
-        pathSetManager.configPath(fromName: vehicleOuter, toName: keepOnLoadViewModel.name, toSVG: "circle——KeepON Load".toSVGURL())
-        pathSetManager.configPath(fromName: keepOnLoadOuter, toName: additionalLoadViewModel.name, toSVG: "circle——Additional Load".toSVGURL())
+        pathSetManager.configPath(fromName: solarEnter, toName: Equipment.battery.rawValue, toSVG: "circle——battery".toSVGURL())
+        pathSetManager.configPath(fromName: vehicleEnter, toName: Equipment.vehicle.rawValue, toSVG: "circle——vehicle".toSVGURL())
+        pathSetManager.configPath(fromName: vehicleOuter, toName: Equipment.keepOnLoad.rawValue, toSVG: "circle——KeepON Load".toSVGURL())
+        pathSetManager.configPath(fromName: keepOnLoadOuter, toName: Equipment.additionalLoad.rawValue, toSVG: "circle——Additional Load".toSVGURL())
     }
     
     /// 生成部分圆路径
@@ -389,132 +155,42 @@ extension String {
 }
 
 extension RealtimeSceneViewController {
- 
-    func startCounter() {
-        let solarIncreaseTimer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { [weak self] timer in
-            self?.solarViewModel.power += 1
+    private func bindViewModel() {
+        let equipmentViews: [(RealtimeSceneViewModel.Equipment, PowerEquipmentView)] = [
+            (.solar, solarView), (.grid, gridView), (.battery, batteryView),
+            (.vehicle, vehicleView), (.keepOnLoad, keepOnLoadView), (.additionalLoad, additionalLoadView)
+        ]
+        for (equipment, equipmentView) in equipmentViews {
+            viewModel.powerObservable(for: equipment)
+                .observe(on: MainScheduler.instance)
+                .subscribe(onNext: { [weak equipmentView] power in
+                    equipmentView?.updatePower(power)
+                })
+                .disposed(by: disposeBag)
         }
-        RunLoop.current.add(solarIncreaseTimer, forMode: .common)
-        self.solarIncreaseTimer = solarIncreaseTimer
-        
-        let gridIncreaseTimer = Timer.scheduledTimer(withTimeInterval: 4, repeats: true) { [weak self] timer in
-            self?.gridViewModel.power += 1
-        }
-        RunLoop.current.add(gridIncreaseTimer, forMode: .common)
-        self.gridIncreaseTimer = gridIncreaseTimer
-        
-        let vehicleReduceTimer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { [weak self] timer in
-            guard let self = self, vehicleViewModel.power > 0 else { return }
-            vehicleViewModel.power -= 1
-        }
-        RunLoop.current.add(vehicleReduceTimer, forMode: .common)
-        self.vehicleReduceTimer = vehicleReduceTimer
-        
-        let usageExtraReduceTimer = Timer.scheduledTimer(withTimeInterval: 6, repeats: true) { [weak self] timer in
-            guard let self = self, additionalLoadViewModel.power > 0 else { return }
-            additionalLoadViewModel.power -= 1
-        }
-        RunLoop.current.add(usageExtraReduceTimer, forMode: .common)
-        self.usageExtraReduceTimer = usageExtraReduceTimer
-        
-        let transportTimer = Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { [weak self] timer in
-            guard let self = self else { return }
-            let source = [solarViewModel.name, gridViewModel.name]
-            let useSourceIndex = Int.random(in: 0..<source.count)
-            let to = [batteryViewModel.name, vehicleViewModel.name, keepOnLoadViewModel.name, additionalLoadViewModel.name]
-            let useToIndex = Int.random(in: 0..<to.count)
-            powerTransport(fromName: source[useSourceIndex], toName: to[useToIndex])
-        }
-        RunLoop.current.add(transportTimer, forMode: .common)
-        self.transportTimer = transportTimer
+        viewModel.transferObservable
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] transfer in
+                self?.animateTransfer(transfer)
+            })
+            .disposed(by: disposeBag)
     }
-    
-    func powerTransport(fromName: String, toName: String) {
-        guard let fromViewModel = powerFrom(fromName: fromName) else {
-            print("[\(String(describing: Self.self))-\(#function)-\(Thread.current):\(#line)] 没有录入出发点\(fromName)")
-            return
-        }
-        guard let toViewModel = powerTo(toName: toName) else {
-            print("[\(String(describing: Self.self))-\(#function)-\(Thread.current):\(#line)] 没有录入目的地\(toName)")
-            return
-        }
-        guard fromViewModel.power > 0 else {
-            print("[\(String(describing: Self.self))-\(#function)-\(Thread.current):\(#line)] 出发点\(fromName)电能不足")
-            return
-        }
-        pathSetManager.getPath(fromName: fromName, toName: toName) { [weak self] path, error in
-            guard let self = self, let path else {
-                print("[\(String(describing: Self.self))-\(#function)-\(Thread.current):\(#line)] error: \(String(describing: error?.localizedDescription))")
+
+    private func animateTransfer(_ transfer: RealtimeSceneViewModel.PowerTransfer) {
+        pathSetManager.getPath(fromName: transfer.source.rawValue, toName: transfer.destination.rawValue) { [weak self] path, error in
+            guard let self, let path else {
+                print("Unable to prepare transfer path: \(String(describing: error))")
                 return
             }
-            fromViewModel.power -= 1
-            let payer = AnimationLayer()
-            payer.path = path.cgPath
-            payer.frame = pathImgV.bounds
-            pathImgV.layer.addSublayer(payer)
-            payer.startAnimation {
-                payer.removeFromSuperlayer()
-                toViewModel.power += 1
+            guard viewModel.beginTransfer(transfer) else { return }
+            let layer = AnimationLayer()
+            layer.path = path.cgPath
+            layer.frame = pathImgV.bounds
+            pathImgV.layer.addSublayer(layer)
+            layer.startAnimation { [weak self, weak layer] in
+                layer?.removeFromSuperlayer()
+                self?.viewModel.completeTransfer(transfer)
             }
-        }
-    }
-    
-    func powerFrom(fromName: String) -> PowerRquipmentViewModel? {
-        if fromName == solarViewModel.name {
-            return solarViewModel
-        } else if fromName == gridViewModel.name {
-            return gridViewModel
-        }
-        return nil
-    }
-    
-    func powerTo(toName: String) -> PowerRquipmentViewModel? {
-        if toName == batteryViewModel.name {
-            return batteryViewModel
-        } else if toName == vehicleViewModel.name {
-            return vehicleViewModel
-        } else if toName == keepOnLoadViewModel.name {
-            return keepOnLoadViewModel
-        } else if toName == additionalLoadViewModel.name {
-            return additionalLoadViewModel
-        }
-        return nil
-    }
-}
-
-extension RealtimeSceneViewController {
-    
-    @objcMembers class PowerRquipmentViewModel: NSObject {
-        
-        let name: String
-        
-        @objc dynamic var power: Int = 0 {
-            didSet {
-                lab?.attributedText = getNowPowerAttr()
-            }
-        }
-        
-        weak var lab: UILabel?
-        
-        init(name: String, power: Int) {
-            self.name = name
-            self.power = power
-        }
-        
-        func connect(label: UILabel) {
-            lab = label
-            lab?.attributedText = getNowPowerAttr()
-        }
-        
-        func getFormatAttr(value: Int) -> NSAttributedString {
-            let attr = NSMutableAttributedString()
-            attr.append(.init(string: "\(value)", attributes: [.font : UIFont.systemFont(ofSize: 32, weight: .bold), .foregroundColor : UIColor(hex: 0xFFFFFF)]))
-            attr.append(.init(string: "kW", attributes: [.font : UIFont.systemFont(ofSize: 14, weight: .regular), .foregroundColor : UIColor(hex: 0xFFFFFF)]))
-            return attr
-        }
-        
-        func getNowPowerAttr() -> NSAttributedString {
-            getFormatAttr(value: power)
         }
     }
 }
@@ -590,5 +266,67 @@ extension RealtimeSceneViewController {
             
             progress += 0.005
         }
+    }
+}
+
+/// Displays an equipment value, name and image in the requested vertical order.
+final class PowerEquipmentView: UIStackView {
+    enum Order {
+        case valueNameImage
+        case imageNameValue
+    }
+
+    let valueLabel = UILabel()
+    private let nameLabel = UILabel()
+    let imageView = UIImageView()
+
+    init(name: String, imageName: String, order: Order, imageSize: CGSize? = CGSize(width: 60, height: 60), valueHeight: CGFloat = 48) {
+        super.init(frame: .zero)
+        translatesAutoresizingMaskIntoConstraints = false
+        axis = .vertical
+        alignment = .center
+        distribution = .fill
+        spacing = 0
+
+        nameLabel.text = name
+        nameLabel.font = .systemFont(ofSize: 13, weight: .regular)
+        nameLabel.textColor = .init(hex: 0xFFFFFF, a: 0.3)
+        imageView.image = UIImage(named: imageName)
+
+        let arrangedViews: [UIView]
+        switch order {
+        case .valueNameImage:
+            arrangedViews = [valueLabel, nameLabel, imageView]
+        case .imageNameValue:
+            arrangedViews = [imageView, nameLabel, valueLabel]
+        }
+        arrangedViews.forEach { addArrangedSubview($0) }
+        nameLabel.snp.makeConstraints { make in
+            make.height.equalTo(20)
+        }
+        valueLabel.snp.makeConstraints { make in
+            make.height.equalTo(valueHeight)
+        }
+        if let imageSize {
+            imageView.snp.makeConstraints { make in
+                make.size.equalTo(imageSize)
+            }
+        }
+    }
+
+    func updatePower(_ power: Int) {
+        let text = NSMutableAttributedString(string: "\(power)", attributes: [
+            .font: UIFont.systemFont(ofSize: 32, weight: .bold),
+            .foregroundColor: UIColor(hex: 0xFFFFFF)
+        ])
+        text.append(NSAttributedString(string: "kW", attributes: [
+            .font: UIFont.systemFont(ofSize: 14, weight: .regular),
+            .foregroundColor: UIColor(hex: 0xFFFFFF)
+        ]))
+        valueLabel.attributedText = text
+    }
+
+    required init(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }

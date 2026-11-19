@@ -6,6 +6,8 @@ target 'TopologyNetwork' do
   pod 'SnapKit', '5.7.1'
   pod 'MyBaseExtension', '0.0.6'
   pod 'SwiftSVG', '2.3.2'
+  pod 'RxSwift'
+  pod 'RxRelay'
 end
 
 post_install do |installer|

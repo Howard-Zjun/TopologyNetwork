@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A49155010000000000000001 /* RealtimeSceneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49155010000000000000002 /* RealtimeSceneViewModel.swift */; };
 		39CBA70930AEFB3E007F72BD /* PathSetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CBA6EA30AEFB3E007F72BD /* PathSetManager.swift */; };
 		39CBA70A30AEFB3E007F72BD /* RealtimeSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CBA6EB30AEFB3E007F72BD /* RealtimeSceneViewController.swift */; };
 		39CBA70B30AEFB3E007F72BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CBA6FE30AEFB3E007F72BD /* AppDelegate.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A49155010000000000000002 /* RealtimeSceneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealtimeSceneViewModel.swift; sourceTree = "<group>"; };
 		39CBA63830AEFA82007F72BD /* TopologyNetwork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TopologyNetwork.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39CBA6EA30AEFB3E007F72BD /* PathSetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathSetManager.swift; sourceTree = "<group>"; };
 		39CBA6EB30AEFB3E007F72BD /* RealtimeSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealtimeSceneViewController.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 			children = (
 				39CBA6EA30AEFB3E007F72BD /* PathSetManager.swift */,
 				39CBA6EB30AEFB3E007F72BD /* RealtimeSceneViewController.swift */,
+				A49155010000000000000002 /* RealtimeSceneViewModel.swift */,
 			);
 			path = RealtimeScene;
 			sourceTree = "<group>";
@@ -227,13 +230,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-TopologyNetwork/Pods-TopologyNetwork-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-TopologyNetwork/Pods-TopologyNetwork-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -271,6 +270,7 @@
 			files = (
 				39CBA70930AEFB3E007F72BD /* PathSetManager.swift in Sources */,
 				39CBA70A30AEFB3E007F72BD /* RealtimeSceneViewController.swift in Sources */,
+				A49155010000000000000001 /* RealtimeSceneViewModel.swift in Sources */,
 				39CBA70B30AEFB3E007F72BD /* AppDelegate.swift in Sources */,
 				39CBA70C30AEFB3E007F72BD /* SceneDelegate.swift in Sources */,
 				39CBA70D30AEFB3E007F72BD /* ViewController.swift in Sources */,
@@ -308,6 +308,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 43X9H5CSF2;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TopologyNetwork/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -341,6 +342,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 43X9H5CSF2;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TopologyNetwork/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
